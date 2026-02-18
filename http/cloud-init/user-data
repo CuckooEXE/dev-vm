@@ -1,0 +1,22 @@
+#cloud-config
+users:
+  - name: user
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: password
+ssh_pwauth: true
+chpasswd:
+  list: |
+    user:password
+  expire: False
+packages:
+- curl
+- jq
+- qemu-guest-agent
+package_update: true
+package_upgrade: true
+preserve_hostname: true
+hostname: dev-vm
+create_hostname_file: true
