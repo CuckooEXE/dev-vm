@@ -5,16 +5,8 @@ users:
     groups: sudo
     shell: /bin/bash
     lock_passwd: false
-    passwd: password
+    passwd: $6$U6XS3fRbxJmj.1Bu$gyfNrGNJ8GsA2Q7.pkFR5A7/Mc2NzPk7SvLN9J8150Ez5iqGgJ/w/CE4Cf2V0hv6vCde9GNf9lYXAVPm3KpM5.
 ssh_pwauth: true
-chpasswd:
-  list: |
-    user:password
-  expire: False
-packages:
-- curl
-- jq
-- qemu-guest-agent
 package_update: true
 package_upgrade: true
 preserve_hostname: true

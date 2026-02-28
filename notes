@@ -1,0 +1,52 @@
+Sources:
+    https://github.com/torvalds/linux.git
+    https://github.com/llvm/llvm-project.git
+    X https://github.com/python/cpython.git
+    X git://sourceware.org/git/binutils-gdb.git
+    X https://github.com/file/file.git
+    X https://git.savannah.gnu.org/git/make.git
+    X https://git.savannah.gnu.org/git/nano.git
+    X https://github.com/vim/vim.git
+    X https://github.com/the-tcpdump-group/tcpdump.git
+    X https://repo.or.cz/socat.git
+    X https://github.com/Kitware/CMake.git
+    X https://git.musl-libc.org/git/musl
+    X https://github.com/openssl/openssl.git
+    X https://github.com/sqlite/sqlite.git
+    X https://github.com/curl/curl.git
+    X https://github.com/git/git.git
+    X https://github.com/htop-dev/htop.git
+    X https://github.com/pciutils/pciutils.git
+    X https://github.com/lyonel/lshw.git
+    X https://github.com/gregkh/usbutils.git
+    X https://git.busybox.net/busybox
+    X https://github.com/hugsy/gef.git
+    X https://github.com/hugsy/gef-extras.git
+    X https://sourceware.org/git/binutils-gdb.git
+
+
+Install:
+
+    DNS?
+    VSCode (+ extensions)
+    Neovim (+ extensions)
+    Zsh (+ extensions)
+    nushell (+ extensions)
+    oh-my-posh
+    uv
+    firefox
+    apt install mingw-w64
+    tldr pages
+    jq
+    yq # pip install
+    btop
+    ripgrep 
+    fd
+    ghidra
+    binary ninja
+    rardare2
+    iatio
+
+
+    ollama
+    binwalk

@@ -1,6 +1,6 @@
 variable "disk_size" {
   type    = string
-  default = "4G"
+  default = "512G"
 }
 
 variable "image_name" {
@@ -41,6 +41,8 @@ build {
   sources = ["source.qemu.debian"]
     provisioner "shell" {
       scripts = [
+        "scripts/wait-for-cloud-init.sh",
+        "scripts/vs-code.sh",
         "scripts/git-clone.sh",
         "scripts/install.sh",
       ]
