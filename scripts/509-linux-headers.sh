@@ -2,6 +2,4 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}"/utils.sh
 
-apt_save curl
-
-curl -fsSL https://ollama.com/install.sh | sh
+apt_save linux-headers-"$(uname -r)"

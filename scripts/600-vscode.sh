@@ -1,7 +1,9 @@
 #!/bin/bash
-set -x
-set -euo pipefail
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
+apt_save curl
+apt_save gpg
 
 sudo apt-get install -y wget gpg
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -17,10 +19,9 @@ Architectures: amd64,arm64,armhf
 Signed-By: /usr/share/keyrings/microsoft.gpg
 EOF
 
-sudo apt install -y apt-transport-https
+apt_save apt-transport-https
 sudo apt update
-sudo apt install -y code
-
+apt_save code
 
 for ext in \
     ms-python.python \
@@ -29,5 +30,3 @@ for ext in \
 do
     code --install-extension "${ext}"
 done
-
-

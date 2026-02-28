@@ -39,12 +39,17 @@ source "qemu" "debian" {
 
 build {
   sources = ["source.qemu.debian"]
-    provisioner "shell" {
-      scripts = [
-        "scripts/wait-for-cloud-init.sh",
-        "scripts/vs-code.sh",
-        "scripts/git-clone.sh",
-        "scripts/install.sh",
-      ]
-    }
+
+  provisioner "file" {
+    source      = "./scripts"
+    destination = "/home/user/Desktop/"
+  }
+
+  provisioner "shell" {
+    inline = [
+      "chmod +x /home/user/Desktop/scripts/*.sh",
+      "cd /home/user/Desktop/",
+      "for f in $(ls scripts/[0-9]*.sh | sort -V); do echo 'Executing: $f'; time ./$f || { echo 'Error in $f, stopping.'; exit 1; }; done"
+    ]
+  }
 }

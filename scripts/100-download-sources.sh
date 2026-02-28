@@ -1,15 +1,11 @@
 #!/bin/bash
-set -x
-set -euo pipefail
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update \
-    && sudo apt upgrade -y \
-    && sudo apt install -y git
+apt_save git
 
-sudo mkdir -p /opt/dev-setup/sources/
-sudo chown -R $(id -u):$(id -g) /opt/dev-setup/
-cd /opt/dev-setup/sources/
+mkdir -p "${HOME}/Desktop/Sources"
+cd "${HOME}/Desktop/Sources"
 
 for url in \
     https://github.com/torvalds/linux.git \
@@ -37,7 +33,6 @@ for url in \
     https://github.com/hugsy/gef-extras.git \
     ;
 do
-    echo "downloading: $url"; 
     dir="$(echo "${url}" | cut -d/ -f3-)"
     [ -d "${dir}" ] || git clone --mirror "${url}" "${dir}"
     

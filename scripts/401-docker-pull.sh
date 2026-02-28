@@ -1,11 +1,9 @@
 #!/bin/bash
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
-set -x
-set -euo pipefail
+require_cmds docker
 
-command -v docker &>/dev/null || { echo "Error: docker is required."; exit 1; }
-
-sudo mkdir -p /opt/dev-setup/docker/
 for img in \
     ghcr.io/freecodecamp/devdocs:latest \
     debian:9.0 \

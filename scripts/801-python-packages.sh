@@ -1,14 +1,11 @@
 #!/bin/bash
-set -x
-set -euo pipefail
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
-command -v uv &>/dev/null || { echo "Error: uv is required."; exit 1; }
+require_cmds uv
 
-sudo mkdir -p /opt/dev-setup/venv/
-sudo chown -R $(id -u):$(id -g) /opt/dev-setup/
-
-uv venv /opt/dev-setup/venv
-source /opt/dev-setup/venv/bin/activate
+uv venv "${HOME}"/.venv
+source "${HOME}"/.venv
 uv pip install \
     uv shiv pyinstaller pip-tools ruff black mypy pyfakefs watchdog psutil python-dotenv click typer tqdm rich colorama sh invoke fabric paramiko pyyaml toml ujson requests flask \
     pwntools scapy impacket r2pipe pyelftools keystone-engine capstone unicorn ropper angr z3-solver pycryptodome exifread python-magic dirsearch sqlmap requests-ntlm yara-python \

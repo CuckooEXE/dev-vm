@@ -46,7 +46,9 @@ Install:
     binary ninja
     rardare2
     iatio
+    hyperfine
 
 
-    ollama
     binwalk
+
+    VSCode offline remote with auto-install script?

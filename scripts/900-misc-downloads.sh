@@ -1,18 +1,11 @@
 #!/bin/bash
-set -x
-set -euo pipefail
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update \
-    && sudo apt upgrade -y \
-    && sudo apt install -y git
+apt_save wget
 
-sudo mkdir -p /opt/dev-setup/downloads/
-sudo chown -R $(id -u):$(id -g) /opt/dev-setup/
-cd /opt/dev-setup/downloads/
-
-wget \
-  
+mkdir -p "${HOME}"/Downloads
+cd "${HOME}"/Downloads
 for url in \
     https://download.sysinternals.com/files/SysinternalsSuite.zip \
     https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip \

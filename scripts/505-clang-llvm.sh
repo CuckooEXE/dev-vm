@@ -1,8 +1,7 @@
 #!/bin/bash
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
-set -x
-set -euo pipefail
+apt_save wget
 
-command -v wget &>/dev/null || { echo "Error: wget is required."; exit 1; }
-
-bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"

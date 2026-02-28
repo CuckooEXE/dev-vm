@@ -1,12 +1,8 @@
 #!/bin/bash
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}"/utils.sh
 
-set -x
-set -euo pipefail
-
-command -v curl &>/dev/null || { echo "Error: curl is required."; exit 1; }
-
-sudo mkdir -p /opt/dev-setup/deb/
-sudo chown -R $(id -u):$(id -g) /opt/dev-setup/
+apt_save curl
 
 # Add Docker's official GPG key:
 sudo apt update
@@ -25,11 +21,10 @@ Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 
 sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+for pkg in docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin; do
+    apt_save "${pkg}"
+done
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
-
-sudo apt-get install --download-only -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-mv /var/cache/apt/archives/*.deb /opt/dev-setup/deb/
