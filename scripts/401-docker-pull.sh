@@ -2,6 +2,8 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}"/utils.sh
 
+exit 0
+
 require_cmds docker
 
 for img in \
@@ -21,7 +23,10 @@ for img in \
     postgres:alpine \
     nginx:alpine \
     mongo:8.2-rc \
-    redis:8.4.2-trixie;
+    redis:8.4.2-trixie \
+    technitium/dns-server:14.3.0 \
+    radare/radare2:latest \
+    ;
 do
-    docker image pull "${img}"
+    sudo docker image pull "${img}"
 done

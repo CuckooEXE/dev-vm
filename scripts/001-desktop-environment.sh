@@ -2,8 +2,6 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}"/utils.sh
 
-apt_save curl
-
-curl https://www.zvm.app/install.sh | bash
-source "${HOME}"/.bashrc
-zvm i 0.15.1 --zls
+apt_save xfce4
+apt_save xfce4-goodies
+sudo systemctl set-default graphical.target

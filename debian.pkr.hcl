@@ -19,6 +19,8 @@ source "qemu" "debian" {
   disk_image       = true
   disk_interface   = "virtio"
   disk_size        = "${var.disk_size}"
+  memory           = 4096
+  cpus             = 6
   format           = "qcow2"
   headless         = true
   http_content     = {
@@ -28,7 +30,7 @@ source "qemu" "debian" {
   iso_checksum     = "file:${var.iso_base_url}/SHA512SUMS"
   iso_url          = "${var.iso_base_url}/${var.image_name}"
   net_device       = "virtio-net"
-  qemuargs         = [["-smbios", "type=1,serial=ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/cloud-init/"]]
+  qemuargs         = [["-smbios", "type=1,serial=ds=nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/cloud-init/"]]
   shutdown_command = "echo packer | sudo systemctl poweroff"
   ssh_password     = "password"
   ssh_port         = 22
@@ -40,16 +42,24 @@ source "qemu" "debian" {
 build {
   sources = ["source.qemu.debian"]
 
+  provisioner "shell" {
+    inline = ["/usr/bin/cloud-init status --wait || (cloud-init status --long && exit 1)"]
+  }
+
+  provisioner "shell" {
+    inline = ["mkdir -p /home/user/Desktop/scripts/"]
+  }
+
   provisioner "file" {
-    source      = "./scripts"
-    destination = "/home/user/Desktop/"
+    source      = "./scripts/"
+    destination = "/home/user/Desktop/scripts/"
   }
 
   provisioner "shell" {
     inline = [
       "chmod +x /home/user/Desktop/scripts/*.sh",
       "cd /home/user/Desktop/",
-      "for f in $(ls scripts/[0-9]*.sh | sort -V); do echo 'Executing: $f'; time ./$f || { echo 'Error in $f, stopping.'; exit 1; }; done"
+      "for f in $(ls scripts/[0-9]*.sh | sort -V); do echo 'Executing: $f'; ./$f || { echo 'Error in $f, stopping.'; exit 1; }; done"
     ]
   }
 }

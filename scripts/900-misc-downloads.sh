@@ -9,6 +9,7 @@ cd "${HOME}"/Downloads
 for url in \
     https://download.sysinternals.com/files/SysinternalsSuite.zip \
     https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip \
+    https://raw.githubusercontent.com/dwain-barnes/local-translator/refs/heads/main/local-translator.html \
     ;
 do
     wget --force-directories "${url}"

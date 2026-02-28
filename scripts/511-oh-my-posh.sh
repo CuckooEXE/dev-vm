@@ -4,6 +4,4 @@ source "${SCRIPT_DIR}"/utils.sh
 
 apt_save curl
 
-curl https://www.zvm.app/install.sh | bash
-source "${HOME}"/.bashrc
-zvm i 0.15.1 --zls
+curl -s https://ohmyposh.dev/install.sh | bash -s

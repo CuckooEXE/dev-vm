@@ -1,6 +1,4 @@
 Sources:
-    https://github.com/torvalds/linux.git
-    https://github.com/llvm/llvm-project.git
     X https://github.com/python/cpython.git
     X git://sourceware.org/git/binutils-gdb.git
     X https://github.com/file/file.git
@@ -26,29 +24,7 @@ Sources:
 
 
 Install:
-
-    DNS?
-    VSCode (+ extensions)
     Neovim (+ extensions)
-    Zsh (+ extensions)
-    nushell (+ extensions)
-    oh-my-posh
-    uv
-    firefox
-    apt install mingw-w64
-    tldr pages
-    jq
-    yq # pip install
-    btop
-    ripgrep 
-    fd
-    ghidra
-    binary ninja
-    rardare2
-    iatio
-    hyperfine
 
 
     binwalk
-
-    VSCode offline remote with auto-install script?

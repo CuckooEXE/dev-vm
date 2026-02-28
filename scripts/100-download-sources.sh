@@ -2,6 +2,8 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}"/utils.sh
 
+exit 0
+
 apt_save git
 
 mkdir -p "${HOME}/Desktop/Sources"

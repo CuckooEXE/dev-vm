@@ -25,6 +25,6 @@ for pkg in docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-com
     apt_save "${pkg}"
 done
 
-sudo groupadd docker
+sudo groupadd docker || true
 sudo usermod -aG docker $USER
 newgrp docker
