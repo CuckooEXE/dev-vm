@@ -4,4 +4,4 @@ source "${SCRIPT_DIR}"/utils.sh
 
 apt_save curl
 
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/0.10.7/uv-installer.sh | XDG_BIN_HOME=/opt/dev-setup/bin/ sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/0.10.7/uv-installer.sh | sh

@@ -22,11 +22,3 @@ EOF
 apt_save apt-transport-https
 sudo apt update
 apt_save code
-
-for ext in \
-    ms-python.python \
-    ms-vscode.cpptools \
-    ;
-do
-    code --install-extension "${ext}"
-done

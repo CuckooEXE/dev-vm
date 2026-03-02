@@ -1,0 +1,11 @@
+sudo qemu-system-x86_64 \
+  -m 16G \
+  -smp 4 \
+  -enable-kvm \
+  -cpu host \
+  -drive file=output-debian/dev-vm.qcow2,format=qcow2 \
+  -vga virtio \
+  -display vnc=127.0.0.1:1 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -device virtio-net-pci,netdev=net0 \
+  -usb -device usb-tablet

@@ -2,7 +2,10 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}"/utils.sh
 
+export PATH="${HOME}/.local/bin:${PATH}"
 require_cmds uv
+
+apt_save python3-dev
 
 uv venv "${HOME}"/.venv
 source "${HOME}"/.venv/bin/activate
